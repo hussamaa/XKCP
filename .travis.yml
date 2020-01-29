@@ -93,6 +93,70 @@ jobs:
       #script: make SkylakeX/UnitTests && bin/SkylakeX/UnitTests -a # not supported yet
       #name: "SkylakeX"                                             # not supported yet
 
+    - stage: "Tests on AMD64 (osx)"
+      script: make generic64/UnitTests && bin/generic64/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: gcc
+      name: "generic64 (gcc)"
+    - script: make generic64/UnitTests && bin/generic64/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: clang
+      name: "generic64 (clang)"
+    - script: make asmX86-64/UnitTests && bin/asmX86-64/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: gcc
+      name: "asmX86-64 (gcc)"
+    - script: make asmX86-64/UnitTests && bin/asmX86-64/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: clang
+      name: "asmX86-64 (clang)"
+    - script: make asmX86-64shld/UnitTests && bin/asmX86-64shld/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: gcc
+      name: "asmX86-64shld (gcc)"
+    - script: make asmX86-64shld/UnitTests && bin/asmX86-64shld/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: clang
+      name: "asmX86-64shld (clang)"
+    - script: make Nehalem/UnitTests && bin/Nehalem/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: gcc
+      name: "Nehalem (gcc)"
+    - script: make Nehalem/UnitTests && bin/Nehalem/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: clang
+      name: "Nehalem (clang)"
+    - script: make SandyBridge/UnitTests && bin/SandyBridge/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: gcc
+      name: "SandyBridge (gcc)"
+    - script: make SandyBridge/UnitTests && bin/SandyBridge/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: clang
+      name: "SandyBridge (clang)"
+    - script: make Haswell/UnitTests && bin/Haswell/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: gcc
+      name: "Haswell (gcc)"
+    - script: make Haswell/UnitTests && bin/Haswell/UnitTests -a
+      os: osx
+      arch: amd64
+      compiler: clang
+      name: "Haswell (clang)"
+      #script: make SkylakeX/UnitTests && bin/SkylakeX/UnitTests -a # not supported yet
+      #name: "SkylakeX"                                             # not supported yet
+
 #script:
 #  - make generic64/UnitTests && bin/generic64/UnitTests -a
 #  - make asmX86-64/UnitTests && bin/asmX86-64/UnitTests -a
