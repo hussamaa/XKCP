@@ -1,0 +1,58 @@
+notifications:
+  email:
+    recipients:
+      - hussama.ismail@gmail.com
+    on_success: always
+    on_failure: always
+
+language: c
+
+sudo: required
+
+compiler:
+#  - clang
+  - gcc
+
+os:
+  - linux
+#  - osx
+
+arch:
+  - amd64
+
+  before_install:
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get -qq update && sudo apt-get install xsltproc; fi  
+
+stages:
+  - name: "Tests on AMD64"
+  - name: "Tests on ARM64"
+  
+jobs:
+  include:
+    - stage: "Tests on AMD64"
+      script: make generic64/UnitTests && bin/generic64/UnitTests -a
+      name: "generic64"
+      script: make asmX86-64/UnitTests && bin/asmX86-64/UnitTests -a
+      name: "asmX86-64"
+      script: make asmX86-64shld/UnitTests && bin/asmX86-64shld/UnitTests -a
+      name: "asmX86-64shld"
+      script: make Nehalem/UnitTests && bin/Nehalem/UnitTests -a
+      name: "Nehalem"
+      script: make SandyBridge/UnitTests && bin/SandyBridge/UnitTests -a
+      name: "SandyBridge"
+      script: make Haswell/UnitTests && bin/Haswell/UnitTests -a
+      name: "Haswell"
+      #script: make SkylakeX/UnitTests && bin/SkylakeX/UnitTests -a # not supported yet
+      #name: "SkylakeX"                                             # not supported yet
+    - stage: "Tests on AMD64"
+      script: make generic64/UnitTests && bin/generic64/UnitTests -a
+      name: "generic64"
+
+#script:
+#  - make generic64/UnitTests && bin/generic64/UnitTests -a
+#  - make asmX86-64/UnitTests && bin/asmX86-64/UnitTests -a
+#  - make asmX86-64shld/UnitTests && bin/asmX86-64shld/UnitTests -a
+#  - make Nehalem/UnitTests && bin/Nehalem/UnitTests -a
+#  - make SandyBridge/UnitTests && bin/SandyBridge/UnitTests -a
+#  - make Haswell/UnitTests && bin/Haswell/UnitTests -a
+#  - make SkylakeX/UnitTests && bin/SkylakeX/UnitTests -a
