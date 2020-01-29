@@ -20,12 +20,14 @@ os:
 arch:
   - amd64
 
-  before_install:
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get -qq update && sudo apt-get install xsltproc; fi  
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get -qq update && sudo apt-get install xsltproc; fi  
 
 stages:
   - name: "Tests on AMD64"
+    #if: os = "linux"
   - name: "Tests on ARM64"
+    #if: os = "linux"
   
 jobs:
   include:
@@ -44,7 +46,7 @@ jobs:
       name: "Haswell"
       #script: make SkylakeX/UnitTests && bin/SkylakeX/UnitTests -a # not supported yet
       #name: "SkylakeX"                                             # not supported yet
-    - stage: "Tests on AMD64"
+    - stage: "Tests on ARM64"
       script: make generic64/UnitTests && bin/generic64/UnitTests -a
       name: "generic64"
 
