@@ -23,6 +23,21 @@ jobs:
       arch: arm64
       compiler: gcc
       name: "generic64 (gcc)"
+    - script: make generic64/UnitTests && bin/generic64/UnitTests -a
+      os: linux
+      arch: arm64
+      compiler: clang
+      name: "generic64 (clang)"
+    - script: make ARMv8A/UnitTests && bin/ARMv8A/UnitTests -a
+      os: linux
+      arch: arm64
+      compiler: gcc
+      name: "ARMv8A (gcc)"
+    - script: make ARMv8A/UnitTests && bin/ARMv8A/UnitTests -a
+      os: linux
+      arch: arm64
+      compiler: clang
+      name: "ARMv8A (clang)"
     - stage: "Tests on AMD64 (linux)"
       script: make generic64/UnitTests && bin/generic64/UnitTests -a
       os: linux
