@@ -14,6 +14,8 @@ before_install:
 
 jobs:
   allow_failures:
+    - script: make generic64/UnitTests && bin/generic64/UnitTests -a
+    - script: make ARMv8A/UnitTests && bin/ARMv8A/UnitTests -a
     - script: make asmX86-64/UnitTests && bin/asmX86-64/UnitTests -a
     - script: make asmX86-64shld/UnitTests && bin/asmX86-64shld/UnitTests -a
   include:
